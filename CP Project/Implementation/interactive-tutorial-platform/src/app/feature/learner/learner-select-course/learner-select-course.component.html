@@ -42,10 +42,10 @@
       <div class="card px-5 bg-light border border-danger">
         <h4 class="title">Leave a comment:  </h4>
         <div class="textarea-container">
-          <textarea class="form-control" name="name" rows="3" cols="80" placeholder="Type a comment..."></textarea>
+          <textarea #comment class="form-control" rows="3" cols="80" placeholder="Type a comment..." value="asdasd"></textarea>
         </div>
         <div class="float-right">
-          <button class="btn btn-primary btn-round btn-block">Post</button>
+          <button (click)="onPostComment(comment.value)" class="btn btn-primary btn-round btn-block">Post</button>
         </div>
       </div>
 
@@ -55,11 +55,26 @@
         <h4 class="title text-center text-light">
           Comments
         </h4>
-        <div *ngFor="let list of list" class="card px-5 bg-light">
-          <h4 class="title text-left">Username</h4>
-          <p class="description text-left">This is the comment This is the comment This is the comment This is the comment.</p>
+        <div *ngFor="let comments of commentList" class="card px-5 bg-light">
+          <div class="row">
+            <div class="col-md-11">
+              <h4 class="title text-left">{{comments?.user?.username}}</h4>
+            </div>
+            <div class="col-md-1">
+              <input type="button" class="btn btn-round btn-icon btn-primary text-light mt-4" value="⋮">
+            </div>
+          </div>
+          <p class="description text-left">{{comments?.comment}}</p>
           <div class="float-right">
-            <p class="category text-primary">-Date</p>
+            <div class="button-container">
+              <a (click)="openEditBlog(blog, addOrEditBlog)" class="btn btn-info btn-round btn-icon p-2 mt-0 ml-0">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a (click)="onDeleteBlog(blog.blogId)" class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-2 text-light">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+            <p class="category text-primary">-{{comments?.addedDate}}</p>
           </div>
         </div>
       </div>

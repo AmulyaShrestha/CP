@@ -1,9 +1,9 @@
 import {User} from './User';
-import {Course} from './Course';
 
 export class Comments {
+    commentId: string;
     user: User;
-    course: Course;
+    courseId: string;
     comment: string;
     addedDate: string;
 }

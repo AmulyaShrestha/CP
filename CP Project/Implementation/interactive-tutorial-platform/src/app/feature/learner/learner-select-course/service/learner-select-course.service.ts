@@ -1,32 +1,32 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from '../../../Model/User';
-import {Course} from '../../../Model/Course';
+import {Comments} from '../../../Model/Comments';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LearnerSelectCourseService {
-    comment: Comment = new Comment();
-    currentUser: User = new User();
-    currentCourse: Course = new Course();
+    comment: Comments = new Comments();
 
     constructor(private firestore: AngularFirestore) {
     }
 
-    getAllComments() {
+    getAllComments(currentUser: User, courseId: string) {
+        return this.firestore.collection('comment', ref => ref.where('user.userId', '==', currentUser.userId)
+            .where('courseId', '==', courseId)).snapshotChanges()
+    }
+
+    addComment(commentData: Comments) {
+        return this.firestore.collection('comment').add(commentData)
+    }
+
+    updateComment(commentId, commentData: Comments) {
+        return this.firestore.doc(`comment/${commentId}`).update(commentData)
 
     }
 
-    addComment(commentData: Comment, currentUser: User, currentCourse: Course) {
-        return this.firestore.collection('comment')
-    }
-
-    updateComment() {
-
-    }
-
-    deletComment() {
-
+    deletComment(commentId) {
+        return this.firestore.doc(`course/${commentId}`).delete()
     }
 }
