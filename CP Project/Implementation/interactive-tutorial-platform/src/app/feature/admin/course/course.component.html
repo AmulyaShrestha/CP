@@ -1,0 +1,119 @@
+<div class="card p-3 mb-0">
+    <div class="card-title">
+        <h1 class="h2">Course</h1>
+        <div class="float-right mr-3 mb-3">
+            <button (click)="openAddCourse(addOrEditCourse)"
+                    class="btn btn-primary btn-round btn-just-icon px-3 py-2 btn-lg"
+                    type="button"><i class="fa fa-plus mr-2"></i>Add
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Introduction</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let course of courseList; let i = index;">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{course.mainTitle}}</td>
+                <td>{{course.infoContent}}</td>
+                <td class="button-container">
+                    <a (click)="openEditCourse(course, addOrEditCourse)" class="btn btn-info btn-round btn-icon p-2 mt-0 ml-0">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a (click)="onDeleteCourse(course.courseId)" class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-2 text-light">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #addOrEditCourse let-modal class="bg-dark">
+    <div class="modal-header" class="bg-dark p-3 d-inline">
+        <div class="float-right">
+            <button (click)="modal.dismiss()" class="btn btn-round btn-icon mt-0"><strong>x</strong></button>
+        </div>
+        <div class="card-title category text-primary text-center">
+            Course
+        </div>
+    </div>
+    <div class="modal-body bg-dark">
+        <form [formGroup]="addOrEditCourseForm">
+            <div class="card-body">
+                <div class="content">
+                    <label class="text-light card-title">Main-Title</label>
+                    <div class="input-group form-group-no-border input-lg">
+                        <input type="text" class="form-control" placeholder="Main Title" formControlName="mainTitle">
+                    </div>
+
+                    <textarea class="form-control btn-round bg-secondary p-3" name="name" rows="3" cols="80"
+                              placeholder="Type a comment..." formControlName="infoContent"></textarea>
+
+                    <div class="separator separator-primary"></div>
+
+                    <div formArrayName="courseContent">
+                        <div *ngFor="let content of addOrEditCourseForm.get('courseContent')['controls'];let i = index;">
+                            <div [formGroupName]="i">
+                                <div class="card p-3 bg-secondary border">
+                                    <label class="card-title">Sub-Title</label>
+                                    <div class="input-group form-group-no-border input-lg">
+                                        <div class="col-md-11">
+                                            <input type="text" class="form-control" placeholder="Full Name"
+                                                   formControlName="subTitle">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a (click)="deleteField(i)"
+                                               class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-0 text-light">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <textarea class="form-control btn-round bg-light p-3" name="name" rows="3" cols="80"
+                                              placeholder="Type a comment..." formControlName="subContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="float-right">
+                                <button (click)="addField()"
+                                        class="btn btn-primary btn-round btn-just-icon px-3 py-2 btn-lg mb-3"
+                                        type="button"><i class="fa fa-plus mr-2"></i>Add Field
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="separator separator-primary w-100"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <button *ngIf="task === 'Add'" (click)="onSubmitCourse()"
+                                        class="btn btn-outline-success btn-round btn-just-icon px-3 py-2 btn-lg"
+                                        type="button">Submit
+                                </button>
+                                <button *ngIf="task === 'Update'" (click)="onSubmitCourse()"
+                                        class="btn btn-outline-success btn-round btn-just-icon px-3 py-2 btn-lg"
+                                        type="button">Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--<pre>{{addOrEditCourseForm.value | json}}</pre>-->
+</ng-template>

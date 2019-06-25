@@ -1,105 +1,26 @@
-<section class="ftco-section bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">July 12, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+<div class="section section-team text-center">
+  <div class="container">
+    <h2 class="title">Courses</h2>
+    <div class="separator separator-primary"></div>
+      <div class="team">
+        <div class="row">
+
+          <div *ngFor="let course of courseList" class="col-md-4">
+            <div class="card p-4" style="background-image: linear-gradient(#FF5300, white);">
+              <div class="team-player">
+                <img (click)="onSelect(course)" src="assets/img/course.png" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                <h4 class="title">{{course.mainTitle}}</h4>
+                <p class="category text-primary">{{course.mainTitle}}</p>
+                <p class="description">{{course.infoContent}}</p>
+                <!--<a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>-->
               </div>
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry" data-aos-delay="100">
-            <a href="blog-single.html" class="block-20">
-            </a>
-            <div class="text p-4">
-              <div class="meta mb-3">
-                <div><a href="#">July 12, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry" data-aos-delay="200">
-            <a href="blog-single.html" class="block-20">
-            </a>
-            <div class="text p-4">
-              <div class="meta mb-3">
-                <div><a href="#">July 12, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20">
-            </a>
-            <div class="text p-4 d-block">
-              <div class="meta mb-3">
-                <div><a href="#">July 12, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry" data-aos-delay="100">
-            <a href="blog-single.html" class="block-20">
-            </a>
-            <div class="text p-4">
-              <div class="meta mb-3">
-                <div><a href="#">July 12, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry" data-aos-delay="200">
-            <a href="blog-single.html" class="block-20">
-            </a>
-            <div class="text p-4">
-              <div class="meta mb-3">
-                <div><a href="#">July 12, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col text-center">
-          <div class="block-27">
-            <ul>
-              <li><a href="#">&lt;</a></li>
-              <li class="active"><span>1</span></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">&gt;</a></li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>
-  </section>
+  </div>
+

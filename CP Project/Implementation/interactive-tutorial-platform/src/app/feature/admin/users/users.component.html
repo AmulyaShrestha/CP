@@ -1,0 +1,35 @@
+<div class="card p-3 mb-0">
+  <div class="card-title">
+    <h1 class="h2">Users</h1>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Age</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of userList; let i = index;">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{user.fullname}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.age}}</td>
+        <td class="button-container">
+          <a (click)="onDeleteUser(user.id)"
+             class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-2 text-light">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

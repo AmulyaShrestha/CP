@@ -1,0 +1,69 @@
+<div class="section section-team text-center">
+    <div class="container">
+      <div class="button-container p-0">
+        <button class="btn btn-primary btn-round btn-lg btn-icon" placement="right"
+           ngbPopover="Please follow through to access the course." popoverTitle="Tip" popoverClass="popover-primary">
+          <i class="fab fa-angular"></i>
+        </button>
+      </div>
+
+        <div class="container">
+          <div class="card px-5 bg-light">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4 p-2">
+                  <img src="assets/img/avatar.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+                </div>
+                <div class="col-md-8">
+                  <h4 class="title text-center">{{currentCourse.mainTitle}}</h4>
+                  <p class="category text-primary py-4">{{currentCourse.infoContent}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="separator separator-primary"></div>
+
+      <div class="card px-5 bg-dark">
+        <h4 class="title text-center text-light my-5">
+          More on {{currentCourse.mainTitle}}
+        </h4>
+        <div *ngFor="let courseContent of currentCourse.courseContent" class="card px-5 bg-light">
+          <h4 class="title text-center my-4">{{courseContent.subTitle}}</h4>
+          <p class="category text-primary my-5">{{courseContent.subContent}}</p>
+        </div>
+        <div class="button-container mb-4 float-right">
+          <button class="btn btn-primary btn-round btn-lg"><i class="far fa-bookmark mr-2"></i>Mark as <strong>Read</strong></button>
+          <button class="btn btn-primary btn-round btn-lg"><i class="fa fa-bookmark mr-2"></i>Mark as <strong>Unread</strong></button>
+        </div>
+      </div>
+
+      <div class="card px-5 bg-light border border-danger">
+        <h4 class="title">Leave a comment:  </h4>
+        <div class="textarea-container">
+          <textarea class="form-control" name="name" rows="3" cols="80" placeholder="Type a comment..."></textarea>
+        </div>
+        <div class="float-right">
+          <button class="btn btn-primary btn-round btn-block">Post</button>
+        </div>
+      </div>
+
+      <div class="separator separator-primary"></div>
+
+      <div class="card px-5 bg-dark">
+        <h4 class="title text-center text-light">
+          Comments
+        </h4>
+        <div *ngFor="let list of list" class="card px-5 bg-light">
+          <h4 class="title text-left">Username</h4>
+          <p class="description text-left">This is the comment This is the comment This is the comment This is the comment.</p>
+          <div class="float-right">
+            <p class="category text-primary">-Date</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+

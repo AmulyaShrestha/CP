@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="500">
+    <div class="container">
+      <div class="dropdown button-dropdown">
+        <div ngbDropdown>
+          <a class="dropdown-toggle" ngbDropdownToggle>
+              <span class="button-bar"></span>
+              <span class="button-bar"></span>
+              <span class="button-bar"></span>
+          </a>
+           <div ngbDropdownMenu>
+             <a (click)="onLogOut()" class="dropdown-item">Log Out</a>
+           </div>
+         </div>
+      </div>
+        <div class="navbar-translate">
+            <a *ngIf="user.userId !== undefined" class="navbar-brand" [routerLink]="['learner']" placement="bottom" ngbTooltip="Happy learning !!">
+                Welcome, {{user.username}}
+            </a>
+            <a *ngIf="user.userId === undefined" class="navbar-brand" [routerLink]="['authentication/login']" placement="bottom" ngbTooltip="Happy learning !!">
+                Login
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['learner']">
+                      <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                      <p>Home</p>
+                  </a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['learner/course']">
+                      <i class="now-ui-icons files_paper"></i>
+                      <p>Course</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['learner/blog']">
+                        <i class="now-ui-icons arrows-1_share-66"></i>
+                        <p>Blog</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['learner/manual']" rel="tooltip" title="Follow us on Twitter" data-placement="bottom">
+                    <i class="fab fa-angular"></i>
+                    <p class="d-lg-none d-xl-none">Learn more about the app</p>
+                  </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

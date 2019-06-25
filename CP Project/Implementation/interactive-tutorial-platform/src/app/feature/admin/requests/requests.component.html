@@ -1,0 +1,32 @@
+<div class="card p-3 mb-0">
+  <div class="card-title">
+    <h1 class="h2">Course Requests</h1>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Request date</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let request of requestList; let i = index;">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{request.title}}</td>
+        <td>{{request.description}}</td>
+        <td>{{request.addedDate}}</td>
+        <td class="button-container">
+          <a (click)="onDeleteRequest(request.requestId)"
+             class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-2 text-light">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

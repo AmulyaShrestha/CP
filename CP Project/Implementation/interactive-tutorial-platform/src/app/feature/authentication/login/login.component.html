@@ -1,0 +1,49 @@
+<ngx-spinner
+        bdColor = "rgba(51, 51, 51, 0.8)"
+        size = "large"
+        color = "#ff5300"
+        type = "ball-8bits"></ngx-spinner>
+<div class="page-header" filter-color="orange">
+  <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
+        <form class="form" [formGroup]="loginForm">
+          <div class="header header-primary text-center">
+            <div class="text-center p-5">
+              <img src="assets/img/core-logo.png" class="p-2" style="-webkit-filter: invert(100%); filter: invert(100%);">
+            </div>
+          </div>
+          <div class="content">
+            <div class="input-group form-group-no-border input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Email" formControlName="email">
+            </div>
+            <div class="input-group form-group-no-border input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+              </div>
+              <input type="text" placeholder="Password" class="form-control" formControlName="password">
+            </div>
+          </div>
+          <div class="footer text-center">
+            <button (click)="onLogin()" class="btn btn-primary btn-round btn-lg btn-block">Login</button>
+          </div>
+          <div class="pull-left">
+            <h6>
+              <a [routerLink]="['../register']" class="link">Create Account</a>
+            </h6>
+          </div>
+          <div class="pull-right">
+            <h6>
+              <a (click)="logout()" class="link">Forgot password?</a>
+            </h6>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
