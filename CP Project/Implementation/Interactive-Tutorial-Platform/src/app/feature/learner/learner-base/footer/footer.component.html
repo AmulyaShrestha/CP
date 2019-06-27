@@ -4,26 +4,103 @@
       <ul>
         <li>
           <a href="https://www.linkedin.com/in/amulya-shrestha-352344156">
-            Amulya Shrestha
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/amulya-shrestha-352344156">
             About Me
           </a>
         </li>
         <li>
-          <a [routerLink]="['learner/blog']">
-            Blog
-          </a>
+          <button (click)="openFeedback(feedback)" class="btn btn-primary btn-round ml-3">
+            Send feedback
+          </button>
+        </li>
+        <li>
+          <button (click)="openRequest(request)" class="btn btn-primary btn-round ml-3">
+            Request for course
+          </button>
         </li>
       </ul>
     </nav>
-    <div class="copyright">
+    <div class="copyright mt-4">
       &copy;
       2019, Designed by
       <a href="https://www.linkedin.com/in/amulya-shrestha-352344156" target="_blank">Amulya Shrestha</a>. Coded by
       <a href="https://www.linkedin.com/in/amulya-shrestha-352344156" target="_blank">Amulya Shrestha</a>.
     </div>
   </div>
+
+
+  <ng-template #request let-modal class="bg-dark">
+    <div class="modal-header" class="bg-dark p-3 d-inline">
+      <div class="float-right">
+        <button (click)="modal.dismiss()" class="btn btn-round btn-icon mt-0"><strong>x</strong></button>
+      </div>
+      <div class="card-title category text-primary text-center">
+        Request
+      </div>
+    </div>
+    <div class="modal-body bg-dark">
+      <form [formGroup]="requestForm">
+        <div class="card-body">
+          <div class="content">
+            <label class="text-light card-title">Title</label>
+            <div class="input-group form-group-no-border input-lg">
+              <input type="text" class="form-control" placeholder="Request Title" formControlName="title">
+            </div>
+
+            <textarea class="form-control btn-round bg-secondary p-3" name="name" rows="3" cols="80"
+                      placeholder="Type a description for this Request..." formControlName="description"></textarea>
+
+            <div class="separator separator-primary w-100"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <button (click)="sendRequest()"
+                          class="btn btn-outline-success btn-round btn-just-icon px-3 py-2 btn-lg"
+                          type="button">Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <ng-template #feedback let-modal class="bg-dark">
+    <div class="modal-header" class="bg-dark p-3 d-inline">
+      <div class="float-right">
+        <button (click)="modal.dismiss()" class="btn btn-round btn-icon mt-0"><strong>x</strong></button>
+      </div>
+      <div class="card-title category text-primary text-center">
+        Feedback
+      </div>
+    </div>
+    <div class="modal-body bg-dark">
+      <form [formGroup]="feedbackForm">
+        <div class="card-body">
+          <div class="content">
+            <label class="text-light card-title">Title</label>
+            <div class="input-group form-group-no-border input-lg">
+              <input type="text" class="form-control" placeholder="Feedback Title" formControlName="title">
+            </div>
+
+            <textarea class="form-control btn-round bg-secondary p-3" name="name" rows="3" cols="80"
+                      placeholder="Type a description for this feedback or issue..." formControlName="description"></textarea>
+
+            <div class="separator separator-primary w-100"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <button (click)="sendFeedback()"
+                          class="btn btn-outline-success btn-round btn-just-icon px-3 py-2 btn-lg"
+                          type="button">Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
 </footer>

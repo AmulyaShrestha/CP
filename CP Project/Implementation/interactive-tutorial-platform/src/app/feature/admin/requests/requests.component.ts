@@ -15,6 +15,7 @@ export class RequestsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getAllRequests();
     }
 
     getAllRequests() {

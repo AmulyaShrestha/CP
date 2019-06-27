@@ -1,84 +1,102 @@
 <div class="section section-team text-center">
     <div class="container">
-      <div class="button-container p-0">
-        <button class="btn btn-primary btn-round btn-lg btn-icon" placement="right"
-           ngbPopover="Please follow through to access the course." popoverTitle="Tip" popoverClass="popover-primary">
-          <i class="fab fa-angular"></i>
-        </button>
-      </div>
+        <div class="button-container p-0">
+            <button class="btn btn-primary btn-round btn-lg btn-icon" ngbPopover="Please follow through to access the course."
+                    placement="right" popoverClass="popover-primary"
+                    popoverTitle="Tip">
+                <i class="fab fa-angular"></i>
+            </button>
+        </div>
 
         <div class="container">
-          <div class="card px-5 bg-light">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4 p-2">
-                  <img src="assets/img/avatar.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
+            <div class="card px-5 bg-light">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 p-2">
+                            <img alt="Thumbnail Image" class="rounded-circle img-fluid img-raised"
+                                 src="assets/img/avatar.jpg">
+                        </div>
+                        <div class="col-md-8">
+                            <h4 class="title text-center">{{currentCourse.mainTitle}}</h4>
+                            <p class="category text-primary py-4">{{currentCourse.infoContent}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                  <h4 class="title text-center">{{currentCourse.mainTitle}}</h4>
-                  <p class="category text-primary py-4">{{currentCourse.infoContent}}</p>
+            </div>
+        </div>
+
+        <div class="separator separator-primary"></div>
+
+        <div class="card px-5 bg-dark">
+            <h4 class="title text-center text-light my-5">
+                More on {{currentCourse.mainTitle}}
+            </h4>
+            <div *ngFor="let courseContent of currentCourse.courseContent" class="card px-5 bg-light">
+                <h4 class="title text-center my-4">{{courseContent.subTitle}}</h4>
+                <p class="category text-primary my-5">{{courseContent.subContent}}</p>
+            </div>
+            <div class="button-container mb-4 float-right">
+                <button *ngIf="canMark" (click)="markCourseAsRead()" class="btn btn-primary btn-round btn-lg"><i class="far fa-bookmark mr-2"></i>Mark as <strong>Read</strong>
+                </button>
+                <button *ngIf="!canMark" (click)="markCourseAsUnread(markedStatus.statusId)" class="btn btn-primary btn-round btn-lg"><i class="fa fa-bookmark mr-2"></i>Mark as <strong>Unread</strong>
+                </button>
+            </div>
+        </div>
+
+        <div class="card px-5 bg-light border border-danger">
+            <h4 class="title">Leave a comment: </h4>
+            <div class="textarea-container">
+                <textarea #comment class="form-control" cols="80" placeholder="Type a comment..." rows="3"></textarea>
+            </div>
+            <span *ngIf="submitted && comment.value === ''" class="small text-danger">please don't leave this field blank!</span>
+            <div class="float-right">
+                <button (click)="onPostComment(comment.value)" class="btn btn-primary btn-round btn-block">Post</button>
+            </div>
+        </div>
+
+        <div class="separator separator-primary"></div>
+
+        <div class="card px-5 bg-dark">
+            <h4 class="title text-center text-light">
+                Comments
+            </h4>
+            <div *ngFor="let comments of commentList" class="card px-5 bg-light">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h4 class="title text-left">{{comments?.user?.username}}</h4>
+                    </div>
+                    <div class="col-md-1">
+                        <input (click)="enableEdit(comments?.commentId)" *ngIf="comments?.user?.userId === currentUser?.userId"
+                               class="btn btn-round btn-icon btn-primary text-light mt-4" type="button" value="⋮">
+                    </div>
                 </div>
-              </div>
+                <p *ngIf="currentCommentIdForEdit !== comments?.commentId && !editOption"class="description text-left">{{comments?.comment}}</p>
+                <div *ngIf="currentCommentIdForEdit === comments?.commentId && editOption" class="text-left mb-2">
+                    <div class="input-group form-group-no-border input-lg">
+                    <input #commentContent class="form-control" type="text" value="{{comments?.comment}}">
+                    </div>
+                    <span *ngIf="submitted && commentContent.value === ''" class="small text-danger">please don't leave this field blank!</span>
+                    <div class="float-right">
+                        <div class="button-container">
+                            <a (click)="onUpdateComment(comments?.commentId, commentContent.value)"
+                               class="btn btn-info btn-round btn-icon p-2 mt-0 ml-0">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <a (click)="onDeleteComment(comments?.commentId)"
+                               class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-2 text-light">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12 text-right">
+                        <p class="category text-primary">-{{comments?.addedDate}}</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-      <div class="separator separator-primary"></div>
-
-      <div class="card px-5 bg-dark">
-        <h4 class="title text-center text-light my-5">
-          More on {{currentCourse.mainTitle}}
-        </h4>
-        <div *ngFor="let courseContent of currentCourse.courseContent" class="card px-5 bg-light">
-          <h4 class="title text-center my-4">{{courseContent.subTitle}}</h4>
-          <p class="category text-primary my-5">{{courseContent.subContent}}</p>
-        </div>
-        <div class="button-container mb-4 float-right">
-          <button class="btn btn-primary btn-round btn-lg"><i class="far fa-bookmark mr-2"></i>Mark as <strong>Read</strong></button>
-          <button class="btn btn-primary btn-round btn-lg"><i class="fa fa-bookmark mr-2"></i>Mark as <strong>Unread</strong></button>
-        </div>
-      </div>
-
-      <div class="card px-5 bg-light border border-danger">
-        <h4 class="title">Leave a comment:  </h4>
-        <div class="textarea-container">
-          <textarea #comment class="form-control" rows="3" cols="80" placeholder="Type a comment..." value="asdasd"></textarea>
-        </div>
-        <div class="float-right">
-          <button (click)="onPostComment(comment.value)" class="btn btn-primary btn-round btn-block">Post</button>
-        </div>
-      </div>
-
-      <div class="separator separator-primary"></div>
-
-      <div class="card px-5 bg-dark">
-        <h4 class="title text-center text-light">
-          Comments
-        </h4>
-        <div *ngFor="let comments of commentList" class="card px-5 bg-light">
-          <div class="row">
-            <div class="col-md-11">
-              <h4 class="title text-left">{{comments?.user?.username}}</h4>
-            </div>
-            <div class="col-md-1">
-              <input type="button" class="btn btn-round btn-icon btn-primary text-light mt-4" value="⋮">
-            </div>
-          </div>
-          <p class="description text-left">{{comments?.comment}}</p>
-          <div class="float-right">
-            <div class="button-container">
-              <a (click)="openEditBlog(blog, addOrEditBlog)" class="btn btn-info btn-round btn-icon p-2 mt-0 ml-0">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a (click)="onDeleteBlog(blog.blogId)" class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-2 text-light">
-                <i class="fa fa-trash"></i>
-              </a>
-            </div>
-            <p class="category text-primary">-{{comments?.addedDate}}</p>
-          </div>
-        </div>
-      </div>
 
     </div>
-  </div>
+</div>
 

@@ -13,7 +13,7 @@ export class LearnerSelectCourseService {
     }
 
     getAllComments(currentUser: User, courseId: string) {
-        return this.firestore.collection('comment', ref => ref.where('user.userId', '==', currentUser.userId)
+        return this.firestore.collection('comment', ref => ref
             .where('courseId', '==', courseId)).snapshotChanges()
     }
 
@@ -23,10 +23,22 @@ export class LearnerSelectCourseService {
 
     updateComment(commentId, commentData: Comments) {
         return this.firestore.doc(`comment/${commentId}`).update(commentData)
-
     }
 
-    deletComment(commentId) {
-        return this.firestore.doc(`course/${commentId}`).delete()
+    deleteComment(commentId) {
+        return this.firestore.doc(`comment/${commentId}`).delete()
+    }
+
+    addMarkedStatus(markedStatus) {
+        return this.firestore.collection('markedCourse').add(markedStatus)
+    }
+
+    getMarkedStatus(currentUserId: string, courseId: string) {
+        return this.firestore.collection('markedCourse', ref => ref.where('userId', '==', currentUserId)
+            .where('courseId', '==', courseId)).snapshotChanges()
+    }
+
+    deleteMarkedStatus(statusId) {
+        return this.firestore.doc(`markedCourse/${statusId}`).delete()
     }
 }
