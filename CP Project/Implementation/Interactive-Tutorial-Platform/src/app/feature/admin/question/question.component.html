@@ -1,0 +1,112 @@
+<div class="card p-3 mb-0">
+    <div class="card-title">
+        <h1 class="h2">Course Questions</h1>
+    </div>
+    <hr>
+    <div class="card-body">
+        <form [formGroup]="questionAnswerForm">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label><b>Select a Scheme</b></label>
+                    <select (change)="onChangeOption()" class="form-control custom-select"
+                            formControlName="courseId">
+                        <option [ngValue]="null" hidden> Select a Course</option>
+                        <option *ngFor="let course of courseList"
+                                [ngValue]="course?.courseId">{{course.mainTitle}}</option>
+                    </select>
+                </div>
+                <div class="col-md-9">
+                    <div class="float-right" *ngIf="courseId != null">
+                        <button (click)="onDeleteQuestion()"
+                                class="btn btn-danger btn-round btn-just-icon px-3 py-2 btn-lg"
+                                type="button"><i class="fa fa-trash mr-2"></i>Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="courseId == null" class="text-center">
+                <hr>
+                <h2 class="title m-5">Please select a course to begin.</h2>
+            </div>
+            <div *ngIf="courseId != null" formArrayName="questionForm">
+                <div *ngFor="let qsn of questionAnswerForm.get('questionForm')['controls']; let i = index" class="card bg-dark">
+                    <div [formGroupName]="i">
+                        <div class="card-body"><h4 class="card-title text-light">Question {{i + 1}}</h4>
+                            <div class="input-group form-group-no-border input-lg">
+                                <div class="col-md-11">
+                                    <input class="form-control" formControlName="description" placeholder="Question description"
+                                           type="text">
+                                </div>
+                                <div class="col-md-1">
+                                    <a (click)="deleteQuestionField(i)"
+                                       class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-0 text-light">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card bg-secondary" *ngFor="let ans of qsn.get('answers')['controls']; let j = index" formArrayName="answers">
+                                <div class="card-body"  style="min-height: inherit;">
+                                        <div [formGroupName]="j">
+                                            <div class="input-group form-group-no-border input-lg">
+                                                <div class="col-md-6">
+                                                    <input class="form-control" formControlName="description" placeholder="Answer description"
+                                                           type="text">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" formControlName="points" placeholder="points"
+                                                           type="number">
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <a (click)="deleteAnswerField(qsn.controls.answers,j)"
+                                                       class="btn btn-danger btn-round btn-icon p-2 mt-0 ml-0 text-light">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="float-right">
+                                <button (click)="addAnswerField(qsn.controls.answers)"
+                                        class="btn btn-primary btn-round btn-just-icon mr-4 mb-3"
+                                        type="button"><i class="fa fa-plus mr-2"></i>Add Field
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <button (click)="addQuestionField()"
+                                    class="btn btn-primary btn-round btn-just-icon mt-1"
+                                    type="button"><i class="fa fa-plus mr-2"></i>Add Question Field
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="separator separator-primary w-100"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <button *ngIf="saveButton" (click)="onSaveQuestion()"
+                                    class="btn btn-outline-success btn-round btn-just-icon px-3 py-2 btn-lg"
+                                    type="button">Submit
+                            </button>
+                            <button *ngIf="updateButton" (click)="onUpdateQuestion()"
+                                    class="btn btn-outline-success btn-round btn-just-icon px-3 py-2 btn-lg"
+                                    type="button">Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<pre class="text-light">{{questionAnswerForm.value | json}}</pre>-->
+
