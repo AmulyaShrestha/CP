@@ -11,6 +11,7 @@ import {UsersComponent} from './users/users.component';
 import {RouterModule} from '@angular/router';
 import {AdminRoutingModule} from './admin-routing.module';
 import {SharedModuleModule} from '../shared-module/shared-module.module';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {SharedModuleModule} from '../shared-module/shared-module.module';
         BlogComponent,
         FeedbackComponent,
         RequestsComponent,
-        UsersComponent
+        UsersComponent,
+        QuestionComponent
     ],
     imports: [
         CommonModule,

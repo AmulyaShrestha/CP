@@ -41,4 +41,13 @@ export class LearnerSelectCourseService {
     deleteMarkedStatus(statusId) {
         return this.firestore.doc(`markedCourse/${statusId}`).delete()
     }
+
+    proceedAnswers(points) {
+        return this.firestore.collection('points').add(points)
+    }
+
+    getPoints(userId, courseId) {
+        return this.firestore.collection('points', ref => ref.where('userId', '==', userId)
+            .where('courseId', '==', courseId)).snapshotChanges()
+    }
 }

@@ -19,6 +19,8 @@
                         <div class="col-md-8">
                             <h4 class="title text-center">{{currentCourse.mainTitle}}</h4>
                             <p class="category text-primary py-4">{{currentCourse.infoContent}}</p>
+                            <h4 class="title">Achievement: You obtained <b>{{points.obtainedPoints}}</b> out of
+                                <b>{{totalMarks}}</b></h4>
                         </div>
                     </div>
                 </div>
@@ -39,6 +41,39 @@
                 <button *ngIf="canMark" (click)="markCourseAsRead()" class="btn btn-primary btn-round btn-lg"><i class="far fa-bookmark mr-2"></i>Mark as <strong>Read</strong>
                 </button>
                 <button *ngIf="!canMark" (click)="markCourseAsUnread(markedStatus.statusId)" class="btn btn-primary btn-round btn-lg"><i class="fa fa-bookmark mr-2"></i>Mark as <strong>Unread</strong>
+                </button>
+            </div>
+        </div>
+
+        <div class="card bg-dark text-light">
+            <div class="card-head">
+                Questions
+            </div>
+            <div class="card-body">
+                <h4 class="card-title mt-3 mb-5">
+                    {{questionList[securityIndex]?.description}}
+                </h4>
+                <div *ngFor="let ansList of questionList[securityIndex]?.answers">
+                        <label class="form-check-label p-1">
+                            <input (change)="onSelectionChange(questionList[securityIndex]?.description, ansList.description)"
+                                   [checked]="checkedAnswerMap.get(questionList[securityIndex]?.description) === ansList.description"
+                                   class="form-check-input" name="checkedAnswer"
+                                   type="radio">
+                            {{ansList.description}}
+                        </label>
+                </div>
+                <hr>
+                <div class="btn-group float-right" role="group">
+                    <button (click)="onPreviousSecurityQuestion()" [disabled]="!securityPrevious" class="btn btn-round btn-secondary">Previous
+                    </button>
+                    <button (click)="onNextSecurityQuestion()" [disabled]="!securityNext"
+                            class="btn btn-round btn-primary"> Next
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center my-3">
+                <button (click)="onProceedQuestion()" *ngIf="formValid" class="text-center btn btn-primary">Submit
                 </button>
             </div>
         </div>

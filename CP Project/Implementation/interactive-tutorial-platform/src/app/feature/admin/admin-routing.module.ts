@@ -5,6 +5,7 @@ import {BlogComponent} from './blog/blog.component';
 import {FeedbackComponent} from './feedback/feedback.component';
 import {RequestsComponent} from './requests/requests.component';
 import {UsersComponent} from './users/users.component';
+import {QuestionComponent} from './question/question.component';
 
 export const AdminRoutingModule: Routes = [
   {
@@ -14,7 +15,8 @@ export const AdminRoutingModule: Routes = [
       {path: 'blog', component: BlogComponent},
       {path: 'feedback', component: FeedbackComponent},
       {path: 'requests', component: RequestsComponent},
-      {path: 'users', component: UsersComponent}
+      {path: 'users', component: UsersComponent},
+      {path: 'question', component: QuestionComponent}
     ]
   }
 ];
