@@ -45,15 +45,16 @@
             </div>
         </div>
 
-        <div class="card bg-dark text-light">
-            <div class="card-head">
+        <div class="card bg-dark text-light px-5">
+            <h3 class="card-head title mt-3">
                 Questions
-            </div>
+            </h3>
             <div class="card-body">
-                <h4 class="card-title mt-3 mb-5">
+                <h4 class="card-title text-left">
                     {{questionList[securityIndex]?.description}}
                 </h4>
-                <div *ngFor="let ansList of questionList[securityIndex]?.answers">
+                <div class="card text-dark text-left p-5">
+                    <div *ngFor="let ansList of questionList[securityIndex]?.answers">
                         <label class="form-check-label p-1">
                             <input (change)="onSelectionChange(questionList[securityIndex]?.description, ansList.description)"
                                    [checked]="checkedAnswerMap.get(questionList[securityIndex]?.description) === ansList.description"
@@ -61,6 +62,7 @@
                                    type="radio">
                             {{ansList.description}}
                         </label>
+                    </div>
                 </div>
                 <hr>
                 <div class="btn-group float-right" role="group">

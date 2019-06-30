@@ -36,6 +36,7 @@ export class LearnerSelectCourseComponent implements OnInit {
     securityIndex = 0;
     securityNext = false;
     securityPrevious = false;
+    pointExists = false;
 
     checkedAnswerMap: Map<string, string> = new Map<string, string>();
     pointsMap: Map<string, number> = new Map<string, number>();
@@ -107,7 +108,7 @@ export class LearnerSelectCourseComponent implements OnInit {
         this.commentService.updateComment(commentId, actualComment);
         this.editOption = false;
         this.currentCommentIdForEdit = '';
-    }
+    }lo
 
     onDeleteComment(commentId) {
         this.commentService.deleteComment(commentId);
@@ -169,6 +170,9 @@ export class LearnerSelectCourseComponent implements OnInit {
                 const pointsList = response.map( currentPoints => {
                     this.points = currentPoints.payload.doc.data() as Points;
                     this.points.pointsId = currentPoints.payload.doc.id as string;
+                    if (this.points.pointsId != null) {
+                        this.pointExists = true;
+                    }
                 })
             })
     }
@@ -198,10 +202,10 @@ export class LearnerSelectCourseComponent implements OnInit {
 
     onProceedQuestion() {
         this.points = new Points();
+        this.obtainedMarks = 0;
         this.checkedAnswerMap.forEach((value, key) => {
             this.obtainedMarks = this.obtainedMarks + this.pointsMap.get(value);
         });
-
         this.points.courseId = this.currentCourse.courseId;
         this.points.userId = this.currentUser.userId;
         this.points.obtainedPoints = this.obtainedMarks;
