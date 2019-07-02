@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LearnerBlogComponent } from './learner-blog.component';
+import {LearnerBlogService} from './service/learner-blog.service';
 
 describe('LearnerBlogComponent', () => {
   let component: LearnerBlogComponent;
@@ -22,4 +23,14 @@ describe('LearnerBlogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  /*it ('should retrieve blog posts from admin', () => {
+    const fixtureN = TestBed.createComponent(LearnerBlogComponent);
+    const learnerBlogComponent = fixtureN.debugElement.componentInstance;
+    const learnerBlogService = fixtureN.debugElement.injector.get(LearnerBlogService);
+    // retrieve all blog posts
+    learnerBlogService.getBlogList();
+    fixtureN.detectChanges();
+    expect(learnerBlogService.blogList).toEqual(learnerBlogComponent.blogList);
+  })*/
 });

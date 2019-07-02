@@ -7,6 +7,10 @@ import {Comments} from '../../../Model/Comments';
     providedIn: 'root'
 })
 export class LearnerSelectCourseService {
+    /*courseStatus = {status: 'read'};
+    learnerComment = {details: 'this is a good course !!', userId: 'asd'};
+    questionList = [{question: null, answer: null}];
+    points = {obtainedPoints: 50}*/
     comment: Comments = new Comments();
 
     constructor(private firestore: AngularFirestore) {

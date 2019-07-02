@@ -13,6 +13,7 @@ import {CurrentUserService} from '../global-services/currentUser-service/current
 })
 export class NavbarComponent implements OnInit {
     user: User = new User();
+    currentUser: User = new User();
     private toggleButton: any;
     private sidebarVisible: boolean;
 

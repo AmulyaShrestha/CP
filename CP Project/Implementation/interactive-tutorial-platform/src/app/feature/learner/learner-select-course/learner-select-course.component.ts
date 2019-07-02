@@ -108,7 +108,7 @@ export class LearnerSelectCourseComponent implements OnInit {
         this.commentService.updateComment(commentId, actualComment);
         this.editOption = false;
         this.currentCommentIdForEdit = '';
-    }lo
+    }
 
     onDeleteComment(commentId) {
         this.commentService.deleteComment(commentId);

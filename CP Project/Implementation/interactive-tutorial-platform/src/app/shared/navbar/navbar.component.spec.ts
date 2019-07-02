@@ -1,25 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
+import {CurrentUserService} from '../global-services/currentUser-service/current-user.service';
 
 describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ NavbarComponent ]
     })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should be created', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(NavbarComponent);
+    const navBarComponent = fixture.debugElement.componentInstance;
+    expect(navBarComponent).toBeTruthy();
   });
+
+  it ('should have current user if logged in from the service', () => {
+    const fixtureN = TestBed.createComponent(NavbarComponent);
+    const navBarComponent = fixtureN.debugElement.componentInstance;
+    const currentUserService = fixtureN.debugElement.injector.get(CurrentUserService);
+    fixtureN.detectChanges();
+    expect(currentUserService.currentUser).toEqual(navBarComponent.currentUser);
+  })
 });
