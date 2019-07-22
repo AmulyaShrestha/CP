@@ -4,6 +4,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FeedbackRequestService} from './service/feedback-request.service';
 import {User} from '../../../Model/User';
 import {CurrentUserService} from '../../../../shared/global-services/currentUser-service/current-user.service';
+// import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-footer',

@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestComponent } from './test.component';
-import {NavbarComponent} from '../../navbar/navbar.component';
-import {CurrentUserService} from '../../global-services/currentUser-service/current-user.service';
 import {TestfulService} from './testful.service';
 
 describe('TestComponent', () => {

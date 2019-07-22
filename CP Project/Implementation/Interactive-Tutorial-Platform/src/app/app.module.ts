@@ -11,11 +11,13 @@ import {SharedModuleModule} from './feature/shared-module/shared-module.module';
 import {environment} from '../environments/environment';
 import {AuthService} from './feature/authentication/service/auth.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { TestComponent } from './shared/test-component/test/test.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        TestComponent
     ],
     imports: [
         BrowserAnimationsModule,
