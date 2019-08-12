@@ -85,6 +85,7 @@ export class QuestionComponent implements OnInit {
     setQuestions() {
         this.clearFormArray();
         const control = this.questionAnswerForm.controls.questionForm as FormArray;
+        const actualControl = (this.questionAnswerForm.controls.questionForm as FormArray).controls;
         this.questionList.forEach(qsn => {
             control.push(this.formBuilder.group({
                     description: qsn.description,

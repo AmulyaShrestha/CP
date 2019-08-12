@@ -111,9 +111,12 @@ export class LearnerSelectCourseComponent implements OnInit {
     }
 
     onDeleteComment(commentId) {
-        this.commentService.deleteComment(commentId);
-        this.editOption = false;
-        this.currentCommentIdForEdit = '';
+        if (confirm('Are you sure you want to delete this comment?')) {
+            this.commentService.deleteComment(commentId);
+            this.editOption = false;
+            this.currentCommentIdForEdit = '';
+            alert('Successfully deleted Comment !');
+        }
     }
 
     onPostComment(commentContent) {
@@ -155,7 +158,7 @@ export class LearnerSelectCourseComponent implements OnInit {
                 }
 
                 this.questionList.forEach((qsn: Question) => {
-                    qsn.answers.forEach( (ans: Answer) => {
+                    qsn.answers.forEach((ans: Answer) => {
                         this.pointsMap.set(ans.description, ans.points);
                         this.totalMarks = this.totalMarks + ans.points;
                     })
@@ -166,8 +169,8 @@ export class LearnerSelectCourseComponent implements OnInit {
 
     getPoints() {
         this.commentService.getPoints(this.currentUser.userId, this.currentCourse.courseId)
-            .subscribe( response => {
-                const pointsList = response.map( currentPoints => {
+            .subscribe(response => {
+                const pointsList = response.map(currentPoints => {
                     this.points = currentPoints.payload.doc.data() as Points;
                     this.points.pointsId = currentPoints.payload.doc.id as string;
                     if (this.points.pointsId != null) {
